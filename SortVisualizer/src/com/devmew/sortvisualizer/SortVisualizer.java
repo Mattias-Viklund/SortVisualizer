@@ -14,11 +14,15 @@ public class SortVisualizer {
 	public static void main(String[] args) {
 		algorithm = new InsertionSort(list);
 		algorithm.Sort();
-		System.out.println("Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
+		System.out.println(algorithm.GetName()+", Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
 		
 		algorithm = new BubbleSort(list);
 		algorithm.Sort();
-		System.out.println("Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
+		System.out.println(algorithm.GetName()+", Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
+		
+		algorithm = new SelectionSort(list);
+		algorithm.Sort();
+		System.out.println(algorithm.GetName()+", Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
 		
 	}
 }
