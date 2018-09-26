@@ -5,24 +5,26 @@ import com.devmew.sortvisualizer.Algorithms.*;
 public class SortVisualizer {
 	public static int[] list = { 10, 9, 12, 13, 14, 3, 0, 15, 18, 1, 2, 7, 5, 16, 11, 4, 6, 8, 17 };
 	
-	public static AlgorithmBase algorithm;
+	public static AlgorithmBase insSort;
+	public static AlgorithmBase bubSort;
+	public static AlgorithmBase selSort;
 	
 	/**
 	 * Visualize different sorting techniques.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		algorithm = new InsertionSort(list);
-		algorithm.Sort();
-		System.out.println(algorithm.GetName()+", Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
+		insSort = new InsertionSort(list);
+		insSort.Sort();
+		System.out.println(insSort.GetName()+", Is Sorted: "+insSort.Verify(list)+", Steps: "+insSort.steps);
 		
-		algorithm = new BubbleSort(list);
-		algorithm.Sort();
-		System.out.println(algorithm.GetName()+", Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
+		bubSort = new BubbleSort(list);
+		bubSort.Sort();
+		System.out.println(bubSort.GetName()+", Is Sorted: "+bubSort.Verify(list)+", Steps: "+bubSort.steps);
 		
-		algorithm = new SelectionSort(list);
-		algorithm.Sort();
-		System.out.println(algorithm.GetName()+", Is Sorted: "+algorithm.Verify(list)+", Steps: "+algorithm.StepsTaken());
+		selSort = new SelectionSort(list);
+		selSort.Sort();
+		System.out.println(selSort.GetName()+", Is Sorted: "+selSort.Verify(list)+", Steps: "+selSort.steps);
 		
 	}
 }

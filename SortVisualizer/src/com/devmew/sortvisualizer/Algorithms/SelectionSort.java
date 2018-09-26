@@ -2,13 +2,9 @@ package com.devmew.sortvisualizer.Algorithms;
 
 public class SelectionSort extends AlgorithmBase
 {
-	private int[] list;
-	private int steps = 0;
-	
 	public SelectionSort(int[] list)
 	{
 		super(list);
-		this.list = list;
 		
 	}
 
@@ -56,9 +52,8 @@ public class SelectionSort extends AlgorithmBase
 	}
 
 	@Override
-	public int StepsTaken()
-	{
-		return steps;
+	public void Step() {
+		// TODO Auto-generated method stub
 		
 	}
 }

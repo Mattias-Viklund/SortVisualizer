@@ -1,13 +1,8 @@
 package com.devmew.sortvisualizer.Algorithms;
 
 public class InsertionSort extends AlgorithmBase {
-	private int[] list;
-
-	private int steps = 0;
-
 	public InsertionSort(int[] list) {
 		super(list);
-		this.list = list;
 
 	}
 
@@ -43,9 +38,9 @@ public class InsertionSort extends AlgorithmBase {
 	}
 
 	@Override
-	public int StepsTaken() {
-		return steps;
-
+	public void Step() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

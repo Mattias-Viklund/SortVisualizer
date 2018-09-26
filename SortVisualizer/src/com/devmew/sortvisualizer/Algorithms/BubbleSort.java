@@ -1,13 +1,8 @@
 package com.devmew.sortvisualizer.Algorithms;
 
 public class BubbleSort extends AlgorithmBase {
-	private int[] list;
-	
-	private int steps = 0;
-	
 	public BubbleSort(int[] list) {
 		super(list);
-		this.list = list;
 
 	}
 	
@@ -47,10 +42,10 @@ public class BubbleSort extends AlgorithmBase {
 		return "Bubble Sort";
 		
 	}
-
+	
 	@Override
-	public int StepsTaken() {
-		return steps;
-
+	public void Step() {
+		// TODO Auto-generated method stub
+		
 	}
 }
