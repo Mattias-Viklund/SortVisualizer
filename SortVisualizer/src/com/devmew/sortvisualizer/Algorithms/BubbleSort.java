@@ -48,4 +48,11 @@ public class BubbleSort extends AlgorithmBase {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int GetSortingLength()
+	{
+		return super.list.length;
+		
+	}
 }

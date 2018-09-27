@@ -16,15 +16,15 @@ public class SortVisualizer {
 	public static void main(String[] args) {
 		insSort = new InsertionSort(list);
 		insSort.Sort();
-		System.out.println(insSort.GetName()+", Is Sorted: "+insSort.Verify(list)+", Steps: "+insSort.steps);
+		System.out.println(insSort.GetName()+", Is Sorted: "+insSort.Verify()+", Steps: "+insSort.steps);
 		
 		bubSort = new BubbleSort(list);
 		bubSort.Sort();
-		System.out.println(bubSort.GetName()+", Is Sorted: "+bubSort.Verify(list)+", Steps: "+bubSort.steps);
+		System.out.println(bubSort.GetName()+", Is Sorted: "+bubSort.Verify()+", Steps: "+bubSort.steps);
 		
 		selSort = new SelectionSort(list);
 		selSort.Sort();
-		System.out.println(selSort.GetName()+", Is Sorted: "+selSort.Verify(list)+", Steps: "+selSort.steps);
+		System.out.println(selSort.GetName()+", Is Sorted: "+selSort.Verify()+", Steps: "+selSort.steps);
 		
 	}
 }
