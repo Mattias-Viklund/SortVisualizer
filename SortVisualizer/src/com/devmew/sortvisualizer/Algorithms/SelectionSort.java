@@ -56,10 +56,21 @@ public class SelectionSort extends AlgorithmBase
 	}
 
 	@Override
-	public void Step()
+	public void Step(int currentStep)
 	{
-		// TODO Auto-generated method stub
+		int minIndex = currentStep;
+		for (int y = currentStep + 1; y < list.length; y++)
+		{
+			steps++;
 
+			if (list[y] < list[minIndex])
+			{
+				minIndex = y;
+
+			}
+		}
+		Swap(currentStep, minIndex);
+		
 	}
 
 	@Override

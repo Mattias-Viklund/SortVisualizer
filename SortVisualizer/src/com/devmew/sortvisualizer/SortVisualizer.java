@@ -1,30 +1,51 @@
 package com.devmew.sortvisualizer;
 
+import java.awt.List;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import com.devmew.sortvisualizer.Algorithms.*;
+import com.devmew.sortvisualizer.Graphics.Visualizer;
 
 public class SortVisualizer {
-	public static int[] list = { 10, 9, 12, 13, 14, 3, 0, 15, 18, 1, 2, 7, 5, 16, 11, 4, 6, 8, 17 };
+	public static int[] unsortedList = { 10, 9, 12, 13, 14, 3, 0, 15, 18, 1, 2, 7, 5, 16, 11, 4, 6, 8, 17 };
 	
-	public static AlgorithmBase insSort;
-	public static AlgorithmBase bubSort;
-	public static AlgorithmBase selSort;
+	public static AlgorithmBase[] algorithms;
+	
+	public static Visualizer visualizer = new Visualizer(700, 400);
 	
 	/**
 	 * Visualize different sorting techniques.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		insSort = new InsertionSort(list);
-		insSort.Sort();
-		System.out.println(insSort.GetName()+", Is Sorted: "+insSort.Verify()+", Steps: "+insSort.steps);
+		InitializeAlgorithms();
+		Run();
 		
-		bubSort = new BubbleSort(list);
-		bubSort.Sort();
-		System.out.println(bubSort.GetName()+", Is Sorted: "+bubSort.Verify()+", Steps: "+bubSort.steps);
+	}
+	
+	// Long and convoluted name, but descriptive.
+	public static void InitializeAlgorithms() {
+		algorithms = new AlgorithmBase[3];
 		
-		selSort = new SelectionSort(list);
-		selSort.Sort();
-		System.out.println(selSort.GetName()+", Is Sorted: "+selSort.Verify()+", Steps: "+selSort.steps);
+		algorithms[0] = new BubbleSort(unsortedList);
+		algorithms[1] = new InsertionSort(unsortedList);
+		algorithms[2] = new SelectionSort(unsortedList);
 		
+	}
+	
+	public static void Run() {
+		int[] sorted = unsortedList;
+		Arrays.sort(sorted);
+		
+		for (AlgorithmBase alg : algorithms)
+		{
+			for (int i = 0; i < alg.GetSortingLength(); i++)
+			{
+				alg.Step(i);
+				visualizer.Draw(alg.list);
+				
+			}
+		}
 	}
 }

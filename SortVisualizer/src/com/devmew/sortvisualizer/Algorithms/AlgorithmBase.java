@@ -30,7 +30,7 @@ public abstract class AlgorithmBase
 	/**
 	 * Sort one step at a time.
 	 */
-	public abstract void Step();
+	public abstract void Step(int currentStep);
 
 	/**
 	 * Get how many loops is required to 

@@ -1,8 +1,6 @@
 package com.devmew.sortvisualizer.Algorithms;
 
 public class InsertionSort extends AlgorithmBase {
-	private int stepSteps;
-	
 	public InsertionSort(int[] list) {
 		super(list);
 
@@ -40,11 +38,11 @@ public class InsertionSort extends AlgorithmBase {
 	}
 
 	@Override
-	public void Step() {
-		if (stepSteps < list.length)
+	public void Step(int currentStep) {
+		if (currentStep < list.length)
 		{
-			int key = list[stepSteps];
-			int y = stepSteps - 1;
+			int key = list[currentStep];
+			int y = currentStep - 1;
 			while (y >= 0 && list[y] > key) {
 				steps++;
 				list[y + 1] = list[y];
@@ -52,7 +50,6 @@ public class InsertionSort extends AlgorithmBase {
 
 			}
 			list[y + 1] = key;
-			stepSteps++;
 
 		}
 	}

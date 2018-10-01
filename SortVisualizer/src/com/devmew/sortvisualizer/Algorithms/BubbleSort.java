@@ -44,15 +44,20 @@ public class BubbleSort extends AlgorithmBase {
 	}
 	
 	@Override
-	public void Step() {
-		// TODO Auto-generated method stub
-		
+	public void Step(int currentStep) {
+        for (int y = 0; y < list.length - currentStep - 1; y++) {
+    		steps++;
+        	
+            if (list[y] > list[y+1])
+                Swap(y, y + 1);
+            
+        }
 	}
 
 	@Override
 	public int GetSortingLength()
 	{
-		return super.list.length;
+		return list.length-1;
 		
 	}
 }
