@@ -1,6 +1,7 @@
 package com.devmew.sortvisualizer.Graphics;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,20 +10,23 @@ public class Visualizer
 {
 	public JFrame window = new JFrame("Sort visualizer");
 	public JPanel contentPane = new JPanel();
-	
+
 	public Visualizer(int width, int height)
 	{
-		contentPane.setBackground(Color.BLACK);
-		
 		window.setSize(width, height);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 
+		contentPane.setBackground(Color.WHITE);
+		window.setContentPane(contentPane);
+
 	}
 
 	public int Draw(int[] array)
 	{
+		window.getContentPane().removeAll();
+
 		int lowest = array[0];
 		int highest = array[0];
 
@@ -41,16 +45,19 @@ public class Visualizer
 		float width = (window.getWidth() / array.length) - 2;
 		float heightRatio = (window.getHeight() / highest) - 20;
 
-		window.removeAll();
-		window.setContentPane(contentPane);
-		
-		Rectangle r = new Rectangle((int) (1 * width + 1), 0, (int) width, (int) heightRatio * array[0], Color.WHITE);
-		window.add(r);
-
-		for (int i = 0; i < array.length; i++)
+		Squares squares = new Squares();
+		window.getContentPane().add(squares);
+		for (int i = 0; i < 15; i++)
 		{
-
+			squares.addSquare(i * 10, i * 10, 100, 100);
 		}
+
+		window.pack();
+
+//		for (int i = 0; i < array.length; i++)
+//		{
+//
+//		}
 
 		return 1;
 

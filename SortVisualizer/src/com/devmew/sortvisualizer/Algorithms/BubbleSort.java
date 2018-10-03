@@ -1,63 +1,57 @@
 package com.devmew.sortvisualizer.Algorithms;
 
-public class BubbleSort extends AlgorithmBase {
-	public BubbleSort(int[] list) {
+public class BubbleSort extends AbstractAlgorithm
+{
+	public BubbleSort(int[] list)
+	{
 		super(list);
 
 	}
-	
+
 	@Override
-	public void Sort() {
-		int length = list.length;
-		
-		// Implemented using
-		// https://en.wikipedia.org/wiki/Bubble_sort, as a reference.
-        for (int x = 0; x < length - 1; x++) {
-            for (int y = 0; y < length - x - 1; y++) {
-        		steps++;
-            	
-                if (list[y] > list[y+1])
-                    Swap(y, y + 1);
-                
-            }
-        }
+	public void Sort()
+	{
+		for (int x = 0; x < GetSortingLength(); x++)
+		{
+			Step(x);
+
+		}
 	}
-	
-	public void Swap(int firstIndex, int secondIndex) {
+
+	public void Swap(int firstIndex, int secondIndex)
+	{
 		int temp = list[firstIndex];
 		list[firstIndex] = list[secondIndex];
 		list[secondIndex] = temp;
-		
+
 	}
 
 	@Override
-	public int[] GetList() {
-		return list;
-		
-		
-	}
-
-	@Override
-	public String GetName() {
+	public String GetName()
+	{
 		return "Bubble Sort";
-		
+
 	}
-	
+
 	@Override
-	public void Step(int currentStep) {
-        for (int y = 0; y < list.length - currentStep - 1; y++) {
-    		steps++;
-        	
-            if (list[y] > list[y+1])
-                Swap(y, y + 1);
-            
-        }
+	public void Step(int currentStep)
+	{
+		// Implemented using
+		// https://en.wikipedia.org/wiki/Bubble_sort, as a reference.
+		for (int y = 0; y < list.length - currentStep - 1; y++)
+		{
+			steps++;
+
+			if (list[y] > list[y + 1])
+				Swap(y, y + 1);
+
+		}
 	}
 
 	@Override
 	public int GetSortingLength()
 	{
-		return list.length-1;
-		
+		return list.length - 1;
+
 	}
 }

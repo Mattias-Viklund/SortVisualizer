@@ -1,6 +1,6 @@
 package com.devmew.sortvisualizer.Algorithms;
 
-public class SelectionSort extends AlgorithmBase
+public class SelectionSort extends AbstractAlgorithm
 {
 	public SelectionSort(int[] list)
 	{
@@ -11,24 +11,9 @@ public class SelectionSort extends AlgorithmBase
 	@Override
 	public void Sort()
 	{
-		int length = list.length;
-
-		// Implemented using
-		// https://en.wikipedia.org/wiki/Selection_sort, as a reference
-		for (int x = 0; x < length - 1; x++)
+		for (int x = 0; x < GetSortingLength(); x++)
 		{
-			int minIndex = x;
-			for (int y = x + 1; y < length; y++)
-			{
-				steps++;
-
-				if (list[y] < list[minIndex])
-				{
-					minIndex = y;
-
-				}
-			}
-			Swap(x, minIndex);
+			Step(x);
 
 		}
 	}
@@ -42,13 +27,6 @@ public class SelectionSort extends AlgorithmBase
 	}
 
 	@Override
-	public int[] GetList()
-	{
-		return list;
-
-	}
-
-	@Override
 	public String GetName()
 	{
 		return "Selection Sort";
@@ -58,6 +36,8 @@ public class SelectionSort extends AlgorithmBase
 	@Override
 	public void Step(int currentStep)
 	{
+		// Implemented using
+		// https://en.wikipedia.org/wiki/Selection_sort, as a references
 		int minIndex = currentStep;
 		for (int y = currentStep + 1; y < list.length; y++)
 		{
@@ -70,13 +50,13 @@ public class SelectionSort extends AlgorithmBase
 			}
 		}
 		Swap(currentStep, minIndex);
-		
+
 	}
 
 	@Override
 	public int GetSortingLength()
 	{
 		return super.list.length - 1;
-		
+
 	}
 }
