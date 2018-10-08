@@ -4,16 +4,16 @@ public class BubbleSort extends AbstractAlgorithm
 {
 	public BubbleSort(int[] list)
 	{
-		super(list);
+		super(list, "Bubble Sort");
 
 	}
 
 	@Override
-	public void Sort()
+	public void sort()
 	{
-		for (int x = 0; x < GetSortingLength(); x++)
+		for (int x = 0; x < getSortingLength(); x++)
 		{
-			Step(x);
+			step(x);
 
 		}
 	}
@@ -27,14 +27,7 @@ public class BubbleSort extends AbstractAlgorithm
 	}
 
 	@Override
-	public String GetName()
-	{
-		return "Bubble Sort";
-
-	}
-
-	@Override
-	public void Step(int currentStep)
+	public void step(int currentStep)
 	{
 		// Implemented using
 		// https://en.wikipedia.org/wiki/Bubble_sort, as a reference.
@@ -49,7 +42,7 @@ public class BubbleSort extends AbstractAlgorithm
 	}
 
 	@Override
-	public int GetSortingLength()
+	public int getSortingLength()
 	{
 		return list.length - 1;
 

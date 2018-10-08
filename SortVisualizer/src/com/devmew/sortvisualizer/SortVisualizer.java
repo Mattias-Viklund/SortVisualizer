@@ -1,57 +1,72 @@
 package com.devmew.sortvisualizer;
 
-import java.awt.List;
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import com.devmew.sortvisualizer.Algorithms.*;
-import com.devmew.sortvisualizer.Graphics.Visualizer;
+import com.devmew.sortvisualizer.Graphics.*;
+
+import javax.swing.*;
 
 public class SortVisualizer
 {
-	public static int[] unsortedList =
-	{ 10, 9, 12, 13, 14, 3, 0, 15, 18, 1, 2, 7, 5, 16, 11, 4, 6, 8, 17 };
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
 
-	public static AbstractAlgorithm[] algorithms;
+	private final JFrame window;
 
-	public static Visualizer visualizer = new Visualizer(700, 400);
+	private static List<AbstractAlgorithm> algorithms;
+	private static int[] unsortedArray;
 
-	/**
-	 * Visualize different sorting techniques.
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args)
+	public SortVisualizer()
 	{
-		InitializeAlgorithms();
-		Run();
+		window = new JFrame("Sort Visualizer");
+
+		unsortedArray = generateRandomArray(50);
+
+		algorithms.add(new BubbleSort(unsortedArray));
+		algorithms.add(new SelectionSort(unsortedArray));
+		algorithms.add(new InsertionSort(unsortedArray));
 
 	}
 
-	// Long and convoluted name, but descriptive.
-	public static void InitializeAlgorithms()
+	public static int[] generateRandomArray(int count)
 	{
-		algorithms = new AbstractAlgorithm[3];
+		Random rng = new Random();
+		int[] array = new int[count];
 
-		algorithms[0] = new BubbleSort(unsortedList);
-		algorithms[1] = new InsertionSort(unsortedList);
-		algorithms[2] = new SelectionSort(unsortedList);
+		for (int i = 0; i < count; i++)
+		{
+			array[i] = rng.nextInt();
+
+		}
+
+		return array;
+
+	}
+
+	public static void main(String[] args)
+	{
+		Run();
 
 	}
 
 	public static void Run()
 	{
-		while(true)
+		Screen screen = new Screen();
+
+		while (true)
 		{
-			int[] sorted = unsortedList;
+			int[] sorted = unsortedArray;
 			Arrays.sort(sorted);
 
 			for (AbstractAlgorithm alg : algorithms)
 			{
-				for (int i = 0; i < alg.GetSortingLength(); i++)
+				for (int i = 0; i < alg.getSortingLength(); i++)
 				{
-					alg.Step(i);
-					visualizer.Draw(alg.GetList());
+					alg.step(i);
+					//screen.Draw(alg.getList());
 
 				}
 			}

@@ -4,16 +4,16 @@ public class SelectionSort extends AbstractAlgorithm
 {
 	public SelectionSort(int[] list)
 	{
-		super(list);
+		super(list, "Selection Sort");
 
 	}
 
 	@Override
-	public void Sort()
+	public void sort()
 	{
-		for (int x = 0; x < GetSortingLength(); x++)
+		for (int x = 0; x < getSortingLength(); x++)
 		{
-			Step(x);
+			step(x);
 
 		}
 	}
@@ -27,14 +27,7 @@ public class SelectionSort extends AbstractAlgorithm
 	}
 
 	@Override
-	public String GetName()
-	{
-		return "Selection Sort";
-
-	}
-
-	@Override
-	public void Step(int currentStep)
+	public void step(int currentStep)
 	{
 		// Implemented using
 		// https://en.wikipedia.org/wiki/Selection_sort, as a references
@@ -54,7 +47,7 @@ public class SelectionSort extends AbstractAlgorithm
 	}
 
 	@Override
-	public int GetSortingLength()
+	public int getSortingLength()
 	{
 		return super.list.length - 1;
 
