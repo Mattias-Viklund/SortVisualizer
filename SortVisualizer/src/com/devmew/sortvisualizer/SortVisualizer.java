@@ -41,17 +41,21 @@ public class SortVisualizer
 
 	public static void Run()
 	{
-		int[] sorted = unsortedList;
-		Arrays.sort(sorted);
-
-		for (AbstractAlgorithm alg : algorithms)
+		while(true)
 		{
-			for (int i = 0; i < alg.GetSortingLength(); i++)
-			{
-				alg.Step(i);
-				visualizer.Draw(alg.GetList());
+			int[] sorted = unsortedList;
+			Arrays.sort(sorted);
 
+			for (AbstractAlgorithm alg : algorithms)
+			{
+				for (int i = 0; i < alg.GetSortingLength(); i++)
+				{
+					alg.Step(i);
+					visualizer.Draw(alg.GetList());
+
+				}
 			}
+
 		}
 	}
 }

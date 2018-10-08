@@ -13,7 +13,6 @@ public abstract class AbstractAlgorithm
 	/**
 	 * Default constructor, all classes that inherits from here should take an
 	 * integer array as parameter.
-	 * 
 	 * @param int[] list
 	 */
 	public AbstractAlgorithm(int[] list)
@@ -29,21 +28,18 @@ public abstract class AbstractAlgorithm
 
 	/**
 	 * Sort one step at a time
-	 * 
 	 * @param currentStep which step in the for loop the program is at
 	 */
 	public abstract void Step(int currentStep);
 
 	/**
 	 * Get how many loops is required to
-	 * 
 	 * @return int how many loops to sort the array
 	 */
 	public abstract int GetSortingLength();
 
 	/**
 	 * Returns array in current state of sorting algorithm.
-	 * 
 	 * @return int[] array of integers in its current state
 	 */
 	public int[] GetList()
@@ -54,7 +50,6 @@ public abstract class AbstractAlgorithm
 
 	/**
 	 * Return the name of the sorting method as a string.
-	 * 
 	 * @return String name of algorithm
 	 */
 	public abstract String GetName();

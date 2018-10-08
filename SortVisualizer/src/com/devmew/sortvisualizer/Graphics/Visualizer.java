@@ -1,7 +1,6 @@
 package com.devmew.sortvisualizer.Graphics;
 
-import java.awt.Color;
-import java.awt.Rectangle;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -18,8 +17,10 @@ public class Visualizer
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 
-		contentPane.setBackground(Color.WHITE);
 		window.setContentPane(contentPane);
+		window.getContentPane().setLayout(null);
+		window.getContentPane().setBackground(Color.BLACK);
+		window.setBackground(Color.BLACK);
 
 	}
 
@@ -33,10 +34,14 @@ public class Visualizer
 		for (int i = 0; i < array.length; i++)
 		{
 			if (highest < array[i])
+			{
 				highest = array[i];
+			}
 
 			if (lowest > array[i])
+			{
 				lowest = array[i];
+			}
 
 		}
 
@@ -45,14 +50,9 @@ public class Visualizer
 		float width = (window.getWidth() / array.length) - 2;
 		float heightRatio = (window.getHeight() / highest) - 20;
 
-		Squares squares = new Squares();
-		window.getContentPane().add(squares);
-		for (int i = 0; i < 15; i++)
-		{
-			squares.addSquare(i * 10, i * 10, 100, 100);
-		}
-
-		window.pack();
+		SortBar sort = new SortBar(0, 0, 100, 100);
+		window.getContentPane().add(sort);
+		System.out.println("Bam");
 
 //		for (int i = 0; i < array.length; i++)
 //		{
