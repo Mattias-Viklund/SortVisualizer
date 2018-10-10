@@ -1,13 +1,13 @@
 package com.devmew.sortvisualizer;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.devmew.sortvisualizer.Algorithms.*;
 import com.devmew.sortvisualizer.Graphics.*;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class SortVisualizer
 {
@@ -16,12 +16,13 @@ public class SortVisualizer
 
 	private final JFrame window;
 
-	private static List<AbstractAlgorithm> algorithms;
+	private static ArrayList<AbstractAlgorithm> algorithms;
 	private static int[] unsortedArray;
 
 	public SortVisualizer()
 	{
 		window = new JFrame("Sort Visualizer");
+		algorithms = new ArrayList<AbstractAlgorithm>();
 
 		unsortedArray = generateRandomArray(50);
 
@@ -38,7 +39,7 @@ public class SortVisualizer
 
 		for (int i = 0; i < count; i++)
 		{
-			array[i] = rng.nextInt();
+			array[i] = rng.nextInt(1000);
 
 		}
 
@@ -46,13 +47,7 @@ public class SortVisualizer
 
 	}
 
-	public static void main(String[] args)
-	{
-		Run();
-
-	}
-
-	public static void Run()
+	public static void run()
 	{
 		Screen screen = new Screen();
 
@@ -70,7 +65,17 @@ public class SortVisualizer
 
 				}
 			}
-
 		}
+	}
+
+	/**
+	 * Program start point
+	 * @param args String array with command line arguments.
+	 */
+	public static void main(String[] args)
+	{
+		SortVisualizer visualizer = new SortVisualizer();
+		run();
+
 	}
 }

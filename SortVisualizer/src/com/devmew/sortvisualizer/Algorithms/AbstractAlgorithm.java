@@ -11,7 +11,7 @@ import javax.swing.*;
 public abstract class AbstractAlgorithm extends JPanel
 {
 	private static final int BAR_WIDTH = 5;
-	private static final double HEIGHT_PERCENT = 512.0 / 720.0;
+	private static final double BAR_HEIGHT = 512.0 / 720.0;
 	private static final int BARS = WIDTH / BAR_WIDTH;
 
 	/**
@@ -47,8 +47,11 @@ public abstract class AbstractAlgorithm extends JPanel
 
 		try
 		{
+			// Set color to WHITE, Font to Arial
 			panelGraphics.setColor(Color.WHITE);
-			panelGraphics.setFont(new Font("Monospaced", Font.BOLD, 20));
+			panelGraphics.setFont(new Font("Arial", Font.BOLD, 20));
+
+			// Draw current algorithm name and how many steps we've taken
 			panelGraphics.drawString(" Current algorithm: " + this.algorithmName, 10, 30);
 			panelGraphics.drawString("     Array Changes: " + this.steps, 10, 80);
 
@@ -58,6 +61,7 @@ public abstract class AbstractAlgorithm extends JPanel
 		finally
 		{
 			panelGraphics.dispose();
+
 		}
 	}
 
