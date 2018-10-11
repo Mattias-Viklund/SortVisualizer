@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.devmew.sortvisualizer.Algorithms.*;
-import com.devmew.sortvisualizer.Graphics.*;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class SortVisualizer
 {
@@ -22,6 +21,12 @@ public class SortVisualizer
 	public SortVisualizer()
 	{
 		window = new JFrame("Sort Visualizer");
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setLocationRelativeTo(null);
+		window.setContentPane(new JPanel());
+		window.pack();
+		window.setVisible(true);
+
 		algorithms = new ArrayList<AbstractAlgorithm>();
 
 		unsortedArray = generateRandomArray(50);
@@ -32,6 +37,12 @@ public class SortVisualizer
 
 	}
 
+	/**
+	 * Generate integer array with random numbers from 0 - 1000
+	 *
+	 * @param count size of generated array
+	 * @return int[] with result
+	 */
 	public static int[] generateRandomArray(int count)
 	{
 		Random rng = new Random();
@@ -47,10 +58,8 @@ public class SortVisualizer
 
 	}
 
-	public static void run()
+	public void run()
 	{
-		Screen screen = new Screen();
-
 		while (true)
 		{
 			int[] sorted = unsortedArray;
@@ -58,11 +67,22 @@ public class SortVisualizer
 
 			for (AbstractAlgorithm alg : algorithms)
 			{
+				window.getContentPane().removeAll();
+				window.getContentPane().add(alg);
+				window.pack();
 				for (int i = 0; i < alg.getSortingLength(); i++)
 				{
 					alg.step(i);
-					//screen.Draw(alg.getList());
+					alg.updateContent();
+					try
 
+					{
+						Thread.sleep(20l);
+					}
+					catch (Exception e)
+					{
+
+					}
 				}
 			}
 		}
@@ -70,12 +90,13 @@ public class SortVisualizer
 
 	/**
 	 * Program start point
+	 *
 	 * @param args String array with command line arguments.
 	 */
 	public static void main(String[] args)
 	{
 		SortVisualizer visualizer = new SortVisualizer();
-		run();
+		visualizer.run();
 
 	}
 }

@@ -39,6 +39,11 @@ public abstract class AbstractAlgorithm extends JPanel
 
 	}
 
+	public void updateContent(){
+		repaint();
+
+	}
+
 	@Override
 	public void paintComponent(Graphics g)
 	{
@@ -55,6 +60,7 @@ public abstract class AbstractAlgorithm extends JPanel
 			panelGraphics.drawString(" Current algorithm: " + this.algorithmName, 10, 30);
 			panelGraphics.drawString("     Array Changes: " + this.steps, 10, 80);
 
+			// Draw the bars
 			drawBars(panelGraphics);
 
 		}
@@ -92,7 +98,7 @@ public abstract class AbstractAlgorithm extends JPanel
 				{
 					double currentValue = list[x];
 					double percentOfMax = currentValue / maxValue;
-					double heightPercentOfPanel = percentOfMax * HEIGHT_PERCENT;
+					double heightPercentOfPanel = percentOfMax * BAR_HEIGHT;
 					int height = (int) (heightPercentOfPanel * (double) getHeight());
 					int xBegin = x + (barWidth - 1) * x;
 					int yBegin = getHeight() - height;
@@ -106,10 +112,13 @@ public abstract class AbstractAlgorithm extends JPanel
 				if (bufferedGraphics != null)
 				{
 					bufferedGraphics.dispose();
+
 				}
 			}
 
+			int i = 0;
 			panelGraphics.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), null);
+
 		}
 	}
 
