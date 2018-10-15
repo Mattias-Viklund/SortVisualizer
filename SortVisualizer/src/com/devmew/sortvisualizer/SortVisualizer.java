@@ -1,5 +1,6 @@
 package com.devmew.sortvisualizer;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Random;
@@ -69,15 +70,20 @@ public class SortVisualizer
 			{
 				window.getContentPane().removeAll();
 				window.getContentPane().add(alg);
+				window.getContentPane().setBackground(new Color(0, 0, 0));
+				window.setBackground(new Color(0, 0, 0));
 				window.pack();
+
 				for (int i = 0; i < alg.getSortingLength(); i++)
 				{
 					alg.step(i);
 					alg.updateContent();
+
 					try
 
 					{
 						Thread.sleep(20l);
+
 					}
 					catch (Exception e)
 					{

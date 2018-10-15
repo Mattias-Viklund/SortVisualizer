@@ -1,8 +1,5 @@
 package com.devmew.sortvisualizer.Algorithms;
 
-import static com.devmew.sortvisualizer.SortVisualizer.WIDTH;
-import static com.devmew.sortvisualizer.SortVisualizer.HEIGHT;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
@@ -10,6 +7,9 @@ import javax.swing.*;
 
 public abstract class AbstractAlgorithm extends JPanel
 {
+	private static final int WIDTH = 1280;
+	private static final int HEIGHT = 720;
+
 	private static final int BAR_WIDTH = 5;
 	private static final double BAR_HEIGHT = 512.0 / 720.0;
 	private static final int BARS = WIDTH / BAR_WIDTH;
@@ -20,6 +20,8 @@ public abstract class AbstractAlgorithm extends JPanel
 	protected int[] list;
 	protected int steps;
 	protected String algorithmName;
+
+	private int highestValue = Integer.MIN_VALUE;
 
 	/**
 	 * Default constructor, all classes that inherits from here should take an
@@ -36,6 +38,20 @@ public abstract class AbstractAlgorithm extends JPanel
 
 		this.list = list;
 		this.algorithmName = name;
+		this.setBackground(new Color(0, 0, 0));
+
+		this.highestValue = getHighestValue();
+
+	}
+
+	/**
+	 * Gets the canvas size
+	 *
+	 * @return size
+	 */
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(WIDTH, HEIGHT);
 
 	}
 
@@ -84,8 +100,6 @@ public abstract class AbstractAlgorithm extends JPanel
 				bufferedImageWidth = 256;
 			}
 
-			int maxValue = getHighestValue();
-
 			BufferedImage bufferedImage = new BufferedImage(bufferedImageWidth, bufferedImageHeight, BufferedImage.TYPE_INT_ARGB);
 			makeBufferedImageTransparent(bufferedImage);
 			Graphics2D bufferedGraphics = null;
@@ -97,13 +111,15 @@ public abstract class AbstractAlgorithm extends JPanel
 				for (int x = 0; x < list.length; x++)
 				{
 					double currentValue = list[x];
-					double percentOfMax = currentValue / maxValue;
+					double percentOfMax = currentValue / highestValue;
 					double heightPercentOfPanel = percentOfMax * BAR_HEIGHT;
 					int height = (int) (heightPercentOfPanel * (double) getHeight());
 					int xBegin = x + (barWidth - 1) * x;
 					int yBegin = getHeight() - height;
 
 					bufferedGraphics.setColor(new Color(255, 255, 255));
+
+					bufferedGraphics.fillRect(xBegin, yBegin, barWidth, height);
 
 				}
 			}
