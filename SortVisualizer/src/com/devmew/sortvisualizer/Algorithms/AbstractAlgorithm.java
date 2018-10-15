@@ -50,13 +50,9 @@ public abstract class AbstractAlgorithm extends JPanel
 	 * @return size
 	 */
 	@Override
-	public Dimension getPreferredSize() {
+	public Dimension getPreferredSize()
+	{
 		return new Dimension(WIDTH, HEIGHT);
-
-	}
-
-	public void updateContent(){
-		repaint();
 
 	}
 
@@ -101,7 +97,6 @@ public abstract class AbstractAlgorithm extends JPanel
 			}
 
 			BufferedImage bufferedImage = new BufferedImage(bufferedImageWidth, bufferedImageHeight, BufferedImage.TYPE_INT_ARGB);
-			makeBufferedImageTransparent(bufferedImage);
 			Graphics2D bufferedGraphics = null;
 
 			try
@@ -110,10 +105,10 @@ public abstract class AbstractAlgorithm extends JPanel
 
 				for (int x = 0; x < list.length; x++)
 				{
-					double currentValue = list[x];
-					double percentOfMax = currentValue / highestValue;
-					double heightPercentOfPanel = percentOfMax * BAR_HEIGHT;
-					int height = (int) (heightPercentOfPanel * (double) getHeight());
+					double value = list[x];
+					double max = value / highestValue;
+					double heightInPanel = max * BAR_HEIGHT;
+					int height = (int) (heightInPanel * (double) getHeight());
 					int xBegin = x + (barWidth - 1) * x;
 					int yBegin = getHeight() - height;
 
@@ -132,32 +127,8 @@ public abstract class AbstractAlgorithm extends JPanel
 				}
 			}
 
-			int i = 0;
 			panelGraphics.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), null);
 
-		}
-	}
-
-	private void makeBufferedImageTransparent(BufferedImage image)
-	{
-		Graphics2D graphics = null;
-
-		try
-		{
-			graphics = image.createGraphics();
-
-			graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR));
-			graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
-			graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
-
-		}
-		finally
-		{
-			if (graphics != null)
-			{
-				graphics.dispose();
-
-			}
 		}
 	}
 
