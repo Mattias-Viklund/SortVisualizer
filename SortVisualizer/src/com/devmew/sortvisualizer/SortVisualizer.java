@@ -1,5 +1,6 @@
 package com.devmew.sortvisualizer;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,37 +21,35 @@ public class SortVisualizer
 
 	public SortVisualizer()
 	{
-		window = new JFrame("Sort Visualizer");
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setLocationRelativeTo(null);
-		window.setContentPane(new JPanel());
-		window.pack();
-		window.setVisible(true);
-
 		algorithms = new ArrayList<AbstractAlgorithm>();
 
-		unsortedArray = generateRandomArray(50);
+		unsortedArray = generateRandomArray(10, 100);
 
-		algorithms.add(new BubbleSort(unsortedArray));
-		algorithms.add(new SelectionSort(unsortedArray));
-		algorithms.add(new InsertionSort(unsortedArray));
+		algorithms.add(new BubbleSort(unsortedArray.clone()));
+		algorithms.add(new SelectionSort(unsortedArray.clone()));
+		algorithms.add(new InsertionSort(unsortedArray.clone()));
+
+		for (int i : algorithms.get(0).getList())
+		{
+			System.out.print(i+" ");
+
+		}
+
+		window = new JFrame("Sort Visualizer");
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setContentPane(new JPanel());
+		window.setVisible(true);
 
 	}
 
-	/**
-	 * Generate integer array with random numbers from 0 - 1000
-	 *
-	 * @param count size of generated array
-	 * @return int[] with result
-	 */
-	public static int[] generateRandomArray(int count)
+	public static int[] generateRandomArray(int count, int maxValue)
 	{
 		Random rng = new Random();
 		int[] array = new int[count];
 
 		for (int i = 0; i < count; i++)
 		{
-			array[i] = rng.nextInt(1000);
+			array[i] = rng.nextInt(maxValue);
 
 		}
 
@@ -60,27 +59,33 @@ public class SortVisualizer
 
 	public void run()
 	{
+		int[] sorted = unsortedArray.clone();
+		Arrays.sort(sorted);
+
+		window.getContentPane().setBackground(new Color(0, 0, 0));
+
 		while (true)
 		{
-			int[] sorted = unsortedArray;
-			Arrays.sort(sorted);
-
-			for (AbstractAlgorithm alg : algorithms)
+			for (AbstractAlgorithm algorithm : algorithms)
 			{
 				window.getContentPane().removeAll();
-				window.getContentPane().add(alg);
-				window.pack();
-				for (int i = 0; i < alg.getSortingLength(); i++)
-				{
-					alg.step(i);
-					alg.updateContent();
-					try
+				window.getContentPane().add(algorithm);
 
+				for (int i = 0; i < algorithm.getSortingLength(); i++)
+				{
+					algorithm.step(i);
+					algorithm.repaint();
+					window.repaint();
+					window.pack();
+
+					try
 					{
-						Thread.sleep(20l);
+						Thread.sleep(100);
+
 					}
-					catch (Exception e)
+					catch (InterruptedException ex)
 					{
+						ex.printStackTrace();
 
 					}
 				}

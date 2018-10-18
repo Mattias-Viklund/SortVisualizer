@@ -1,8 +1,5 @@
 package com.devmew.sortvisualizer.Algorithms;
 
-import static com.devmew.sortvisualizer.SortVisualizer.WIDTH;
-import static com.devmew.sortvisualizer.SortVisualizer.HEIGHT;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
@@ -10,6 +7,9 @@ import javax.swing.*;
 
 public abstract class AbstractAlgorithm extends JPanel
 {
+	private static final int WIDTH = 1280;
+	private static final int HEIGHT = 720;
+
 	private static final int BAR_WIDTH = 5;
 	private static final double BAR_HEIGHT = 512.0 / 720.0;
 	private static final int BARS = WIDTH / BAR_WIDTH;
@@ -20,6 +20,8 @@ public abstract class AbstractAlgorithm extends JPanel
 	protected int[] list;
 	protected int steps;
 	protected String algorithmName;
+
+	private int highestValue = Integer.MIN_VALUE;
 
 	/**
 	 * Default constructor, all classes that inherits from here should take an
@@ -35,12 +37,23 @@ public abstract class AbstractAlgorithm extends JPanel
 		}
 
 		this.list = list;
+
 		this.algorithmName = name;
+		this.setBackground(new Color(0, 0, 0));
+
+		this.highestValue = getHighestValue();
 
 	}
 
-	public void updateContent(){
-		repaint();
+	/**
+	 * Gets the canvas size
+	 *
+	 * @return size
+	 */
+	@Override
+	public Dimension getPreferredSize()
+	{
+		return new Dimension(WIDTH, HEIGHT);
 
 	}
 
@@ -59,6 +72,13 @@ public abstract class AbstractAlgorithm extends JPanel
 			// Draw current algorithm name and how many steps we've taken
 			panelGraphics.drawString(" Current algorithm: " + this.algorithmName, 10, 30);
 			panelGraphics.drawString("     Array Changes: " + this.steps, 10, 80);
+
+
+			for (int i = 1; i < list.length+1; i++)
+			{
+				panelGraphics.drawString(" " + list[i-1], 25*i, 100);
+
+			}
 
 			// Draw the bars
 			drawBars(panelGraphics);
@@ -84,10 +104,7 @@ public abstract class AbstractAlgorithm extends JPanel
 				bufferedImageWidth = 256;
 			}
 
-			int maxValue = getHighestValue();
-
 			BufferedImage bufferedImage = new BufferedImage(bufferedImageWidth, bufferedImageHeight, BufferedImage.TYPE_INT_ARGB);
-			makeBufferedImageTransparent(bufferedImage);
 			Graphics2D bufferedGraphics = null;
 
 			try
@@ -96,14 +113,16 @@ public abstract class AbstractAlgorithm extends JPanel
 
 				for (int x = 0; x < list.length; x++)
 				{
-					double currentValue = list[x];
-					double percentOfMax = currentValue / maxValue;
-					double heightPercentOfPanel = percentOfMax * BAR_HEIGHT;
-					int height = (int) (heightPercentOfPanel * (double) getHeight());
+					double value = list[x];
+					double max = value / highestValue;
+					double heightInPanel = max * BAR_HEIGHT;
+					int height = (int) (heightInPanel * (double) getHeight());
 					int xBegin = x + (barWidth - 1) * x;
 					int yBegin = getHeight() - height;
 
 					bufferedGraphics.setColor(new Color(255, 255, 255));
+
+					bufferedGraphics.fillRect(xBegin, yBegin, barWidth, height);
 
 				}
 			}
@@ -116,32 +135,8 @@ public abstract class AbstractAlgorithm extends JPanel
 				}
 			}
 
-			int i = 0;
 			panelGraphics.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight(), null);
 
-		}
-	}
-
-	private void makeBufferedImageTransparent(BufferedImage image)
-	{
-		Graphics2D graphics = null;
-
-		try
-		{
-			graphics = image.createGraphics();
-
-			graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR));
-			graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
-			graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
-
-		}
-		finally
-		{
-			if (graphics != null)
-			{
-				graphics.dispose();
-
-			}
 		}
 	}
 
