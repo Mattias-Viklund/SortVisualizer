@@ -23,11 +23,17 @@ public class SortVisualizer
 	{
 		algorithms = new ArrayList<AbstractAlgorithm>();
 
-		unsortedArray = generateRandomArray(50, 100);
+		unsortedArray = generateRandomArray(10, 100);
 
-		algorithms.add(new BubbleSort(unsortedArray));
-		algorithms.add(new SelectionSort(unsortedArray));
-		algorithms.add(new InsertionSort(unsortedArray));
+		algorithms.add(new BubbleSort(unsortedArray.clone()));
+		algorithms.add(new SelectionSort(unsortedArray.clone()));
+		algorithms.add(new InsertionSort(unsortedArray.clone()));
+
+		for (int i : algorithms.get(0).getList())
+		{
+			System.out.print(i+" ");
+
+		}
 
 		window = new JFrame("Sort Visualizer");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +59,7 @@ public class SortVisualizer
 
 	public void run()
 	{
-		int[] sorted = unsortedArray;
+		int[] sorted = unsortedArray.clone();
 		Arrays.sort(sorted);
 
 		window.getContentPane().setBackground(new Color(0, 0, 0));

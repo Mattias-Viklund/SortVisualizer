@@ -37,6 +37,7 @@ public abstract class AbstractAlgorithm extends JPanel
 		}
 
 		this.list = list;
+
 		this.algorithmName = name;
 		this.setBackground(new Color(0, 0, 0));
 
@@ -71,6 +72,13 @@ public abstract class AbstractAlgorithm extends JPanel
 			// Draw current algorithm name and how many steps we've taken
 			panelGraphics.drawString(" Current algorithm: " + this.algorithmName, 10, 30);
 			panelGraphics.drawString("     Array Changes: " + this.steps, 10, 80);
+
+
+			for (int i = 1; i < list.length+1; i++)
+			{
+				panelGraphics.drawString(" " + list[i-1], 25*i, 100);
+
+			}
 
 			// Draw the bars
 			drawBars(panelGraphics);
