@@ -18,7 +18,7 @@ public class SelectionSort extends AbstractAlgorithm
 		}
 	}
 
-	public void Swap(int firstIndex, int secondIndex)
+	public void swap(int firstIndex, int secondIndex)
 	{
 		int temp = list[firstIndex];
 		list[firstIndex] = list[secondIndex];
@@ -42,7 +42,7 @@ public class SelectionSort extends AbstractAlgorithm
 
 			}
 		}
-		Swap(currentStep, minIndex);
+		swap(currentStep, minIndex);
 
 	}
 

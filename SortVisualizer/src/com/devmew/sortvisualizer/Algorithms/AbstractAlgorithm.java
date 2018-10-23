@@ -120,7 +120,7 @@ public abstract class AbstractAlgorithm extends JPanel
 					int xBegin = x + (barWidth - 1) * x;
 					int yBegin = getHeight() - height;
 
-					bufferedGraphics.setColor(new Color(255, 255, 255));
+					bufferedGraphics.setColor(new Color(255, 75, 75));
 
 					bufferedGraphics.fillRect(xBegin, yBegin, barWidth, height);
 

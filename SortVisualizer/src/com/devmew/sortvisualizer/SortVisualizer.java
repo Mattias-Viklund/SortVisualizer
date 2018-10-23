@@ -23,7 +23,7 @@ public class SortVisualizer
 	{
 		algorithms = new ArrayList<AbstractAlgorithm>();
 
-		unsortedArray = generateRandomArray(10, 100);
+		unsortedArray = generateRandomArray(100, 100);
 
 		algorithms.add(new BubbleSort(unsortedArray.clone()));
 		algorithms.add(new SelectionSort(unsortedArray.clone()));
@@ -62,7 +62,7 @@ public class SortVisualizer
 		int[] sorted = unsortedArray.clone();
 		Arrays.sort(sorted);
 
-		window.getContentPane().setBackground(new Color(0, 0, 0));
+		window.getContentPane().setBackground(new Color(155, 155, 155));
 
 		while (true)
 		{
@@ -80,7 +80,7 @@ public class SortVisualizer
 
 					try
 					{
-						Thread.sleep(100);
+						Thread.sleep(2);
 
 					}
 					catch (InterruptedException ex)

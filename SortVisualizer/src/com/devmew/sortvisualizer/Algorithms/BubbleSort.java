@@ -18,7 +18,7 @@ public class BubbleSort extends AbstractAlgorithm
 		}
 	}
 
-	public void Swap(int firstIndex, int secondIndex)
+	public void swap(int firstIndex, int secondIndex)
 	{
 		int temp = list[firstIndex];
 		list[firstIndex] = list[secondIndex];
@@ -36,7 +36,7 @@ public class BubbleSort extends AbstractAlgorithm
 			steps++;
 
 			if (list[y] > list[y + 1])
-				Swap(y, y + 1);
+				swap(y, y + 1);
 
 		}
 	}
